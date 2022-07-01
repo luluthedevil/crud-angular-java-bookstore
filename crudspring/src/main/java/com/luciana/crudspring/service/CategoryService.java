@@ -1,5 +1,6 @@
 package com.luciana.crudspring.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class CategoryService {
     public Category findById(Integer id) {
         Optional<Category> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found :("));
+    }
+
+    public List<Category> findAll() {
+        return repository.findAll();
     }
 
 }
