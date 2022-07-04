@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luciana.crudspring.DTO.CategoryDTO;
 import com.luciana.crudspring.domain.Category;
 import com.luciana.crudspring.repositories.CategoryRepository;
 import com.luciana.crudspring.service.exceptions.ObjectNotFoundException;
@@ -27,6 +28,13 @@ public class CategoryService {
 
     public Category create(Category obj) {
         obj.setId(null);
+        return repository.save(obj);
+    }
+
+    public Category update(Integer id, CategoryDTO objDTO) {
+        Category obj = findById(id);
+        obj.setName(objDTO.getName());
+        obj.setDescription(objDTO.getDescription());
         return repository.save(obj);
     }
 
