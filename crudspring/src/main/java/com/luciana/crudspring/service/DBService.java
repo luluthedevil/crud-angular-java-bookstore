@@ -26,7 +26,7 @@ public class DBService {
 
         Book l1 = new Book(null, "Clean code", "Robert Martin",
                 "Lorem ipsum porta elit quis nulla, taciti iaculis libero accumsan. ", cat1);
-        Book l2 = new Book(null, "Software Engenieer", "Louis V. Gerstner",
+        Book l2 = new Book(null, "Software Engenieering", "Louis V. Gerstner",
                 "Lorem ipsum porta elit quis nulla, taciti iaculis libero accumsan. ", cat1);
         Book l3 = new Book(null, "The Time Machine", "H.G. Wells",
                 "Lorem ipsum porta elit quis nulla, taciti iaculis libero accumsan. ", cat2);
