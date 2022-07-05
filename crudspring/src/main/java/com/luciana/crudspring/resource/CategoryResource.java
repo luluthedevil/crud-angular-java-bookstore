@@ -21,7 +21,7 @@ import com.luciana.crudspring.domain.Category;
 import com.luciana.crudspring.service.CategoryService;
 
 @RestController
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/category")
 public class CategoryResource {
 
     @Autowired

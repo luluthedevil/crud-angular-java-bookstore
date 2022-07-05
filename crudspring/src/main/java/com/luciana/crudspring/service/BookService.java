@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luciana.crudspring.domain.Book;
+import com.luciana.crudspring.domain.Category;
 import com.luciana.crudspring.repositories.BookRepository;
 import com.luciana.crudspring.service.exceptions.ObjectNotFoundException;
 
@@ -39,6 +40,13 @@ public class BookService {
         newObj.setTitle(obj.getTitle());
         newObj.setAuthor_name(obj.getAuthor_name());
         newObj.setText(obj.getText());
+    }
+
+    public Book create(Integer id_cat, Book obj) {
+        obj.setId(null);
+        Category cat = cat_service.findById(id_cat);
+        obj.setCategory(cat);
+        return repository.save(obj);
     }
 
 }

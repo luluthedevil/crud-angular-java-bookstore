@@ -20,7 +20,7 @@ public class CategoryService {
 
     public Category findById(Integer id) {
         Optional<Category> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found :("));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Category not found :("));
     }
 
     public List<Category> findAll() {
