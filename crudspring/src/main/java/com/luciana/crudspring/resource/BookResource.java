@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +25,7 @@ import com.luciana.crudspring.DTO.BookDTO;
 import com.luciana.crudspring.domain.Book;
 import com.luciana.crudspring.service.BookService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/books")
 public class BookResource {
@@ -44,19 +48,19 @@ public class BookResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Book> update(@PathVariable Integer id, @RequestBody Book obj) {
+    public ResponseEntity<Book> update(@PathVariable Integer id, @Valid @RequestBody Book obj) {
         Book newObj = service.update(id, obj);
         return ResponseEntity.ok().body(newObj);
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Book> updatePatch(@PathVariable Integer id, @RequestBody Book obj) {
+    public ResponseEntity<Book> updatePatch(@PathVariable Integer id, @Valid @RequestBody Book obj) {
         Book newObj = service.update(id, obj);
         return ResponseEntity.ok().body(newObj);
     }
 
     @PostMapping
-    public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") Integer id_cat,
+    public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") @Valid Integer id_cat,
             @RequestBody Book obj) {
         Book newObj = service.create(id_cat, obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/books/{id}")

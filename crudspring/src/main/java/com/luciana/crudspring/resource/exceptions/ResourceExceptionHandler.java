@@ -4,6 +4,7 @@ import javax.servlet.ServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -25,6 +26,17 @@ public class ResourceExceptionHandler {
             ServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 obj.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationError> validationError(MethodArgumentNotValidException obj,
+            ServletRequest request) {
+        ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+                "There was an error when validating fields");
+        for (org.springframework.validation.FieldError x : obj.getBindingResult().getFieldErrors()) {
+            error.addErrors(x.getField(), x.getDefaultMessage());
+        }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 

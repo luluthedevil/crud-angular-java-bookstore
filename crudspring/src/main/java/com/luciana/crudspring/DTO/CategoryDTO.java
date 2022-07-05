@@ -2,6 +2,10 @@ package com.luciana.crudspring.DTO;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.luciana.crudspring.domain.Category;
 
 public class CategoryDTO implements Serializable {
@@ -10,8 +14,12 @@ public class CategoryDTO implements Serializable {
 
     private Integer id;
 
+    @NotEmpty(message = "NAME is required")
+    @Length(min = 3, max = 100, message = "Name has to be between 3 and 100 characters long")
     private String name;
 
+    @NotEmpty(message = "DESCRIPTION is required")
+    @Length(min = 3, max = 200, message = "Description has to be between 3 and 200 characters long")
     private String description;
 
     public CategoryDTO() {

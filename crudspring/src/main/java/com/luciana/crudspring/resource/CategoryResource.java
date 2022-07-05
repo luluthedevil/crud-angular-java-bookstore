@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import com.luciana.crudspring.DTO.CategoryDTO;
 import com.luciana.crudspring.domain.Category;
 import com.luciana.crudspring.service.CategoryService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/category")
 public class CategoryResource {
@@ -42,7 +46,7 @@ public class CategoryResource {
     }
 
     @PostMapping
-    public ResponseEntity<Category> create(@RequestBody Category obj) {
+    public ResponseEntity<Category> create(@Valid @RequestBody Category obj) {
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
@@ -50,7 +54,7 @@ public class CategoryResource {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<CategoryDTO> update(
-            @PathVariable Integer id,
+            @Valid @PathVariable Integer id,
             @RequestBody CategoryDTO objDTO) {
         Category newObj = service.update(id, objDTO);
         return ResponseEntity.ok().body(new CategoryDTO(newObj));
