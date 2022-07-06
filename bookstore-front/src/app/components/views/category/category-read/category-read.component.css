@@ -5,7 +5,7 @@
 
 .title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .title h1 {
@@ -14,10 +14,28 @@
     font-weight: 500;
 }
 
-.table-container {
-    
+button {
+    margin-bottom: 1rem;
 }
 
-.table{
+.table {
     width: 100%;
+}
+
+.mat-header-actions {
+    width: 5rem;
+}
+
+.books{
+    margin-left: 0.3rem;
+    color: #A020F0;
+}
+
+.edit {
+    color: #00FF7F;
+    margin-right: 0.5rem;
+}
+
+.delete {
+    color: #CD0000;
 }
