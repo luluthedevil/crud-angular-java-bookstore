@@ -37,6 +37,7 @@ export class CategoryUpdateComponent implements OnInit {
       this.service.message("Category was updated successufully");
     }, err => {
       this.service.message("Fill the fields correctly");
+      console.log(err);
     });
   }
 
