@@ -10,7 +10,7 @@ import { Category } from './category.model';
 })
 export class CategoryService {
 
-  baseUrl: String = environment.baseUrl;
+  baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient, private _snack: MatSnackBar) {
   }
@@ -28,6 +28,11 @@ export class CategoryService {
   create(category: Category): Observable<Category> {
     const url = `${this.baseUrl}/category`;
     return this.http.post<Category>(url, category);
+  }
+
+  update(category: Category): Observable<void> {
+    const url = `${this.baseUrl}/category/${category.id}`;
+    return this.http.put<void>(url, category);
   }
 
   delete(id: string): Observable<void> {

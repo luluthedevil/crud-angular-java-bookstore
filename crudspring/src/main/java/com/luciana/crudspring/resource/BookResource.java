@@ -61,7 +61,7 @@ public class BookResource {
 
     @PostMapping
     public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") @Valid Integer id_cat,
-            @RequestBody Book obj) {
+            @Valid @RequestBody Book obj) {
         Book newObj = service.create(id_cat, obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/books/{id}")
                 .buildAndExpand(newObj.getId())
