@@ -10,6 +10,7 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { HomeComponent } from './components/views/home/home.component';
 import { CategoryReadComponent } from './components/views/category/category-read/category-read.component';
+import { CategoryCreateComponent } from './components/views/category/category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CategoryReadComponent } from './components/views/category/category-read
     FooterComponent,
     NavComponent,
     HomeComponent,
-    CategoryReadComponent
+    CategoryReadComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,
