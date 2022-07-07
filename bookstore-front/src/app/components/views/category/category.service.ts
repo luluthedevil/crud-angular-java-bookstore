@@ -20,9 +20,19 @@ export class CategoryService {
     return this.http.get<Category[]>(url);
   }
 
+  findById(id: string): Observable<Category> {
+    const url = `${this.baseUrl}/category/${id}`;
+    return this.http.get<Category>(url);
+  }
+
   create(category: Category): Observable<Category> {
     const url = `${this.baseUrl}/category`;
     return this.http.post<Category>(url, category);
+  }
+
+  delete(id: string): Observable<void> {
+    const url = `${this.baseUrl}/category/${id}`;
+    return this.http.delete<void>(url);
   }
 
   message(str: string): void {
