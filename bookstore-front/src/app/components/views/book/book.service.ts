@@ -24,14 +24,19 @@ export class BookService {
     return this.http.get<Book>(url);
   }
 
+  create(book: Book, id_cat: string): Observable<Book> {
+    const url = `${this.baseUrl}/books?category=${id_cat}`;
+    return this.http.post<Book>(url, book);
+  }
+
   update(book: Book): Observable<Book> {
     const url = `${this.baseUrl}/books/${book.id}`;
     return this.http.put<Book>(url,book);
   }
 
-  create(book: Book, id_cat: string): Observable<Book> {
-    const url = `${this.baseUrl}/books?category=${id_cat}`;
-    return this.http.post<Book>(url, book);
+  delete(id: string): Observable<void> {
+    const url = `${this.baseUrl}/books/${id}`;
+    return this.http.delete<void>(url);
   }
 
   message(str: string): void {
